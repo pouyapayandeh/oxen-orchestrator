@@ -2,7 +2,7 @@
 .vscode
 oxen-core
 private/*
-__pycache__/*
+**/__pycache__/*
 logs/
 oxen/
 testdata/
