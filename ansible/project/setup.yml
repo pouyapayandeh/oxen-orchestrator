@@ -1,0 +1,39 @@
+- hosts: all 
+  tasks:
+  - name: add Oxen key
+    ansible.builtin.get_url:
+      url: https://deb.oxen.io/pub.gpg
+      dest: /etc/apt/trusted.gpg.d/oxen.gpg 
+  - name: add Oxen repo
+    ansible.builtin.apt_repository:
+      repo: "deb https://deb.oxen.io  {{ ansible_distribution_release }} main"
+      state: present
+  - name : Update APT Cache
+    apt:  
+      update_cache: yes
+  - name : Install multiple packages
+    apt:
+      name: "{{ packages }}"
+    vars:
+      packages:
+      - git
+      - wget
+      - unzip
+      - curl
+      - ca-certificates
+      - lsb-release
+      - build-essential
+      - cmake
+      - pkg-config
+      - libboost-all-dev
+      - libzmq3-dev
+      - libsodium-dev
+      - libunwind8-dev
+      - liblzma-dev
+      - libreadline6-dev
+      - doxygen
+      - graphviz
+      - libpgm-dev
+      - libsqlite3-dev
+      - libcurl4-openssl-dev
+      - liboxenmq-dev 

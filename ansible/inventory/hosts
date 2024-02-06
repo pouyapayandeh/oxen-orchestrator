@@ -1,0 +1,17 @@
+[nodes]
+49.13.199.194 ansible_port=2200 ansible_user=root
+49.13.173.77  ansible_port=2200 ansible_user=root
+23.88.98.217  ansible_port=2200 ansible_user=root
+[service_nodes]
+37.27.43.50 ansible_port=2200 ansible_user=root
+65.21.6.216 ansible_port=2200 ansible_user=root
+37.27.43.89 ansible_port=2200 ansible_user=root
+37.27.43.85 ansible_port=2200 ansible_user=root
+167.235.63.65 ansible_port=2200 ansible_user=root
+5.75.171.41 ansible_port=2200 ansible_user=root
+116.203.68.186 ansible_port=2200 ansible_user=root
+195.201.147.111 ansible_port=2200 ansible_user=root
+49.13.172.214 ansible_port=2200 ansible_user=root
+128.140.66.163 ansible_port=2200 ansible_user=root
+116.203.41.114 ansible_port=2200 ansible_user=root
+116.203.49.0  ansible_port=2200 ansible_user=root

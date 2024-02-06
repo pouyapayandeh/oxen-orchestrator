@@ -1,0 +1,53 @@
+- hosts: all 
+  # strategy: free
+  tasks:
+  - name: Copy oxen.sh
+    # tags: [core, storage]
+    ansible.builtin.copy:
+      src: ../../scripts/oxen.sh
+      dest: ~/oxen.sh
+      mode: '777'
+  - name: oxen.sh init
+    ansible.builtin.shell: ./oxen.sh init > init.log 2>&1
+    args:
+      chdir: ~
+  - name: oxen.sh fix
+    tags: clean
+    ansible.builtin.shell: ./oxen.sh fix > fix.log 2>&1
+    args:
+      chdir: ~
+      creates: fix.log
+
+  - name: oxen.sh clean-core
+    tags: [clean, core]
+    ansible.builtin.shell: ./oxen.sh clean-core
+    args:
+      chdir: ~
+
+  - name: oxen.sh clean-storage
+    tags: [clean, storage]
+    ansible.builtin.shell: ./oxen.sh clean-storage
+    args:
+      chdir: ~
+
+  - name: oxen.sh update
+    # tags: [core, storage]
+    ansible.builtin.shell: ./oxen.sh update > update.log 2>&1
+    args:
+      chdir: ~
+  - name: oxen.sh compile-core
+    tags: core
+    ansible.builtin.shell: ./oxen.sh compile-core > compile-core.log 2>&1
+    args:
+      chdir: ~
+  - name: oxen.sh compile-ssl
+    tags: [ssl, storage]
+    ansible.builtin.shell: ./oxen.sh compile-ssl > compile-ssl.log 2>&1
+    args:
+      chdir: ~
+      creates: oxen/openssl-1.1.1w/libssl.so.1.1
+  - name: oxen.sh compile-storage
+    tags: storage
+    ansible.builtin.shell: ./oxen.sh compile-storage > compile-storage.log 2>&1
+    args:
+      chdir: ~

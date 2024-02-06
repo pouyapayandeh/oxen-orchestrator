@@ -1,0 +1,29 @@
+- hosts: all 
+  strategy: free
+  tasks:
+  - name: Clone Oxen Core
+    ansible.builtin.git:
+      accept_newhostkey: true
+      repo: 'https://github.com/pouyapayandeh/oxen-core.git'
+      dest: ~/oxen/oxen-core
+      version: my-9.2.0
+  - name: Create Build dir
+    ansible.builtin.file:
+      path: ~/oxen/oxen-core/build
+      state: directory
+      mode: '0755'
+  - name: Run cmake for oxen-core
+    ansible.builtin.command: cmake ..
+    args:
+      chdir: ~/oxen/oxen-core/build
+  - name: Clone Storage Service
+    ansible.builtin.git:
+      accept_newhostkey: true
+      repo: 'https://github.com/pouyapayandeh/oxen-storage-server.git'
+      dest: ~/oxen/oxen-storage-server
+      version: my-2.2.0
+  - name: Create Build dir
+    ansible.builtin.file:
+      path: ~/oxen/oxen-storage-server/build
+      state: directory
+      mode: '0755'

@@ -1,0 +1,25 @@
+- hosts: all 
+  # strategy: free
+  tasks:
+  - name: Copy oxen.sh
+    tags: [core, storage]
+    ansible.builtin.copy:
+      src: ../../scripts/oxen.sh
+      dest: ~/oxen.sh
+      mode: '777'
+  - name: oxen.sh fix
+    tags: clean
+    ansible.builtin.shell: ./oxen.sh fix > fix.log 2>&1
+    args:
+      chdir: ~
+      creates: fix.log
+  - name: oxen.sh clean-core
+    tags: [clean, core]
+    ansible.builtin.shell: ./oxen.sh clean-core
+    args:
+      chdir: ~
+  - name: oxen.sh clean-storage
+    tags: [clean, storage]
+    ansible.builtin.shell: ./oxen.sh clean-storage
+    args:
+      chdir: ~
