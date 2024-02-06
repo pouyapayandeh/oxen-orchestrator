@@ -1,3 +1,9 @@
 .venv
 .vscode
 oxen-core
+private/*
+__pycache__/*
+logs/
+oxen/
+testdata/
+ansible/*/arifacts/
