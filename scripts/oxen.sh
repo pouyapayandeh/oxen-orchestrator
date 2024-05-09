@@ -1,5 +1,5 @@
 #!/bin/bash
-oxen_core_version="my-9.2.0"
+oxen_core_version="fork-9.2.0"
 storage_server_version="my-2.2.0"
 export DEBIAN_FRONTEND=noninteractive
 # Check if the number of command line arguments is not equal to 1
@@ -40,8 +40,8 @@ case $action in
             echo "Oxen cloned successfully."
         fi
         cd oxen-core
-        git checkout $oxen_core_version
         git pull
+        git checkout $oxen_core_version
         git submodule update --init --recursive
         cd ..
         echo "Updating oxen-storage-server repo to ${oxen_core_version}"
@@ -51,8 +51,8 @@ case $action in
             echo "Oxen cloned successfully."
         fi
         cd oxen-storage-server
-        git checkout $storage_server_version
         git pull
+        git checkout $storage_server_version
         git submodule update --init --recursive
 
         ;;

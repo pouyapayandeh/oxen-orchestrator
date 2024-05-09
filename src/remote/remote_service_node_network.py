@@ -154,7 +154,7 @@ class SNNetwork:
         # OMQ_path = "tcp://{}:{}".format(self.sns[0].listen_ip,self.sns[0].zmq_port)
         self.ss = [StorageService(storage=self.ss_binpath+'/oxen-storage', datadir=datadir,oxend_ip=ip,
                                   oxen_rpc=IPC_path,verbose=True) 
-                   for ip in range(sns)]
+                   for ip in sns]
 
         for s in self.ss:
             vprint("Storage @ {}".format(s.rpc_port), flush=True, timestamp=False)
